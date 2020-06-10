@@ -1,4 +1,5 @@
 <!doctype html>
+{% load mathjax %}
 <html lang="en">
 
 <head>
@@ -10,32 +11,48 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
+    {% mathjax_scripts %}
 </head>
 
 <body>
-    <div class="container m-auto">
+    <div class="container w-50 mt-0 mb-0 ml-auto mr-auto">
         {% for data in datas %}
         <div class="row">
-            <div class="col-4">
+            <div class="col">
                 <div class="card mb-3">
                     <div class="card-title text-muted">
                         {{ data.title }}
                     </div>
                     <div class="card-body">
-                        {{ title }}
+                        {% if data.title == 'SymPy' or data.title == 'Antiderivative forms' or data.title == 'Integral Steps' %}
+                        {{ hdr }}
+                        {% elif data.title == 'Plot' %}
+                        {{ data.input }}
+                        {% elif data.title == 'Roots' %}
+                        solve(x**2*y), x
+                        {% elif data.title == 'Derivative' %}
+                        diff(x**2*y), x
+                        {% elif data.title == 'Series expansion around 0' %}
+                        series(x**2*y, x, 0, 10)
+                        {% endif %}
                         <hr>
-                        {% autoescape off %}
-                        {{ data.output }}
-                        {% endautoescape %}
+                        <p>
+                            <!-- {% autoescape off %} -->
+                            <!-- <span style="color: inherit; display: none;"></span>
+                            <span style="text-align: center;"></span> -->
+                            {% if data.title == 'Integral Steps' %}
+                            {{ data.value }}
+                            {% else %}
+                            {{ data.output }}
+                            {% endif %}
+                            <!-- {% endautoescape %} -->
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

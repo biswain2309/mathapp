@@ -25,6 +25,8 @@ SECRET_KEY = '73)md5983$03^ge=ny^d-cby$5j&5y@q-cz&&#^e*fj@p_x+(v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MATHJAX_ENABLED=True
+
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'django_mathjax',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +128,17 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+# MATHJAX_LOCAL_PATH = 'js/libs/mathjax/'
+
+# MATHJAX_CONFIG_FILE = "TeX-AMS-MML_HTMLorMML"
+
+# MATHJAX_CONFIG_DATA = {
+#   "tex2jax": {
+#     "inlineMath":
+#       [
+#           ['$','$'],
+#           ['\\(','\\)']
+#       ]
+#   }
+# }
